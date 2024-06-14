@@ -1,0 +1,63 @@
+name: HPMicro
+variants:
+- name: HPM5361
+  cores:
+  - name: core0
+    type: riscv
+    core_access_options: !Riscv {}
+  memory_map:
+  - !Ram
+    name: ILM0
+    range:
+      start: 0x0
+      end: 0x20000
+    cores:
+    - core0
+  - !Ram
+    name: DLM0
+    range:
+      start: 0x80000
+      end: 0xa0000
+    cores:
+    - core0
+  - !Ram
+    name: AHB_SRAM
+    range:
+      start: 0xf0400000
+      end: 0xf0408000
+    cores:
+    - core0
+  - !Nvm
+    name: XPI0
+    range:
+      start: 0x80000000
+      end: 0x80100000
+    is_boot_memory: true
+    cores:
+    - core0
+  flash_algorithms:
+  - algorithm-test
+flash_algorithms:
+- name: algorithm-test
+  description: A flash algorithm under test
+  default: true
+  instructions: EwEB3iMuESAjLIEgIyqRICqEtwUAAAVFfRaNRiOOpUJjdNYMtxUA9AOgBYB9ViOgxYADoAWBI6jFgCOipZBIAhMGABCBRZcAAADngCAYIygBIDcF+fwJBSMioSAZRSMkoSAFZSMmoSA3BQIggyRF8fREvcY3BQDzTAJQBIKW2EQlw7cGAIChjjcFAPORRVACApcDJEEQLAIoABMGwA+XAAAA54CAJjcFAAAjLoUyEwXFMxEFLAATBsAPlwAAAOeAwCQ3BQAAhUUjDrVCAUWDIMEhAySBIYMkQSETAQEigoCXAAAA54BgDZcAAADngOAKtwUAAAPGxUMFRQHGAUUjjgVCgoBBEQbGtwUAAAPGxUOFRQXGtwUCIIOlRfGcTZXDtwYAgKmONwUAABMGxTM3BQDzkUUFZ4KXgUUuhbJAQQGCgJcAAADngEAHQREGxrcGAAADx8ZDroeFRRXHtwUCIIOlRfEDqIUCYwMIArKGNwcAgCmPNwUAABMGxTM3BQDzkUUCmIFFLoWyQEEBgoCXAAAA54CAAkERBsYixAAIlwAAAOeAgAJBEQbGIsQACJcAAADngID+QREGxiLEAAiXAAAA54CA/gGgQREGxiLEAAiyQCJEQQEXAwAAZwBjDEERBsYixAAIwUZja9YGswagQBP4NgCzAwUBYwwIAKqHroYDxwYAI4DnAIUHhQbj6nf+s4gFATMIBkGTcsj/k/U4ALOGUwChwWNZUASTlTgAE/OFAZP3yP+QQ7MFsEAT/oUBkQeYQzNWZgCzFccB0Y0joLMAkQORBzqG4+XT/jGoqoYN4g2oY1pQAMaFkEEjoMMAkQORBePr0/6zhVgAE3Y4ABHKNpYDxwUAI4DmAIUGhQXj6sb+skAiREEBgoBBEQbGIsQACMFGY2TWBLMGoECNijMH1QCZxqqHI4C3AIUH4+3n/hWOk3fG/7MG9wBjXvAAE/j1D7cHAQGThxcQswf4AhzDEQfjbtf+DYoB5gmoqoYZxjaWI4C2AIUG4+3G/rJAIkRBAYKAQREGxiLEAAiyQCJEQQEXAwAAZwCj7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+  load_address: 0x20
+  pc_init: 0x0
+  pc_uninit: 0xf0
+  pc_program_page: 0x14a
+  pc_erase_sector: 0x104
+  data_section_offset: 0x41c
+  flash_properties:
+    address_range:
+      start: 0x80000000
+      end: 0x80100000
+    page_size: 0x400
+    erased_byte_value: 0xff
+    program_page_timeout: 1000
+    erase_sector_timeout: 2000
+    sectors:
+    - size: 0x1000
+      address: 0x0
+  cores:
+  - core0

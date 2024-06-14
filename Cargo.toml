@@ -1,0 +1,27 @@
+[package]
+name = "hpm5300-blinky"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+riscv = { version = "0.11.1", features = ["critical-section-single-hart"] }
+riscv-rt = { version = "0.12.2", features = ["single-hart"] }
+
+hpm-metapac = { path = "../hpm-data/build/hpm-metapac", features = [
+    "hpm5361",
+    "rt",
+    "metadata",
+] }
+panic-halt = "0.2.0"
+embedded-hal = "1.0.0"
+
+
+defmt = "0.3.8"
+defmt-rtt = "0.4.1"
+
+
+[profile.release]
+strip = false   # symbols are not flashed to the microcontroller, so don't strip them.
+lto = true
+# opt-level = "s" # Optimize for size.
+debug = 2
